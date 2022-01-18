@@ -1,0 +1,35 @@
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+
+    /* 드래그 방지 */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+body{
+    background: #efefef;
+}
+
+.font-icon{
+    font-family: 'Material Icons';
+}
+
+*:focus{
+    outline: none;
+}
+
+.App{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 100px calc(100vh - 100px);
+}
+
+.App>div{
+    background-color: white;
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
