@@ -24,12 +24,12 @@ body{
 
 .App{
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 100px calc(100vh - 100px);
+    /* grid-template-columns: 1fr 2fr 1fr; */
+    grid-template-rows: 80px calc(100vh - 80px);
 }
 
 .App>div{
     background-color: white;
-    grid-column: 2/3;
+    /* grid-column: 2/3; */
     grid-row: 2/3;
 }

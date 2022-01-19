@@ -1,8 +1,10 @@
 import '../../css/UI/button.css'
 
-const Button = ({children}) =>{
+const Button = ({children,icon,event}) =>{
     return (
-        <button className='button'>{children}</button>
+        <button 
+        onClick={event}
+        className={'button ' + (icon ? 'font-icon' :'') }>{children}</button>
     )
 }
 

@@ -1,0 +1,27 @@
+.toogle__wrap{
+    width: 40px;
+    height: 20px;
+    background-color: #d1d1d1;
+    display: inline-block;
+    padding: 5px;
+    transition: 0.2s;
+    border-radius: 20px;
+    cursor:pointer;
+    border: 1.2px solid #0000004a;
+}
+
+.toogle__ball{
+    width: 20px;
+    height: 20px;
+    background: white;
+    display: inline-block;
+    transition: 0.2s;
+    border-radius: 10px;
+}
+.toogle__on.toogle__wrap{
+    background-color: #4d8ec1;
+}
+
+.toogle__on .toogle__ball{
+    transform: translateX(20px);
+}

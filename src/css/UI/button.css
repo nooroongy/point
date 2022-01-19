@@ -5,3 +5,9 @@
     border-radius: 9px;
     color: white;
 }
+
+.button.font-icon{
+    background : none;
+    font-size: 1.9em;
+    padding: 0;
+}
