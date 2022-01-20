@@ -1,18 +1,20 @@
 .toogle__wrap{
-    width: 40px;
-    height: 20px;
+    width: 26px;
+    height: 25px;
+    padding: 0 5px;
     background-color: #d1d1d1;
     display: inline-block;
-    padding: 5px;
     transition: 0.2s;
     border-radius: 20px;
-    cursor:pointer;
+    cursor: pointer;
     border: 1.2px solid #0000004a;
+    display: grid;
+    align-items: center;
 }
 
 .toogle__ball{
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
     background: white;
     display: inline-block;
     transition: 0.2s;
@@ -23,5 +25,5 @@
 }
 
 .toogle__on .toogle__ball{
-    transform: translateX(20px);
+    transform: translateX(9px);
 }

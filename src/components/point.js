@@ -14,7 +14,7 @@ const Point = ({ title, type, score = 10, subScore = 5, onChange }) => {
         if (typeof onChange === 'function') onChange(-point)
         if (success && subCount > 0) setDisabledToogle(true);
         else setDisabledToogle(false)
-        setPoint((success ? score : 0) + subScore * subCount)
+        setPoint((success ? score*1 : 0) + subScore * subCount)
     }, [subCount, success])
 
     useEffect(() => {
