@@ -2,34 +2,47 @@ import Button from "./UI/Button";
 import Card from "./UI/Card";
 import '../css/point.css'
 import Toogle from "./UI/Toogle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const Point = ({ title, type, state ,score =10,subScore=5}) => {
+const Point = ({ title, type, score = 10, subScore = 5, onChange }) => {
     const [success, isSucces] = useState(false);
-    const [subCount,setSubCount] = useState(0);
+    const [subCount, setSubCount] = useState(0);
+    const [point, setPoint] = useState(0);
+    const [disabledToogle, setDisabledToogle] = useState(false)
+
+    useEffect(() => {
+        if (typeof onChange === 'function') onChange(-point)
+        if (success && subCount > 0) setDisabledToogle(true);
+        else setDisabledToogle(false)
+        setPoint((success ? score : 0) + subScore * subCount)
+    }, [subCount, success])
+
+    useEffect(() => {
+        if (typeof onChange === 'function') onChange(point)
+    }, [point])
 
     const toggleSuccess = () => {
         isSucces(res => !res);
     }
 
-    const plusSubCount = () =>{
-        if(!success) return;
-        setSubCount(subCount+1)
+    const plusSubCount = () => {
+        if (!success) return;
+        setSubCount(subCount + 1)
     }
 
-    const minusSubCount = () =>{
-        if(!success) return;
-        if(subCount>0)
-        setSubCount(subCount-1)
+    const minusSubCount = () => {
+        if (!success) return;
+        if (subCount > 0)
+            setSubCount(subCount - 1)
     }
 
     function setUI(_type) {
         switch (_type) {
             case "A": return (<Toogle value={success} event={toggleSuccess}></Toogle>)
             case "B": return (<>
-                <Toogle value={success} event={toggleSuccess}></Toogle>
-                <Button event={plusSubCount} icon ={true}>add_circle_outline</Button>
-                <Button event={minusSubCount} icon ={true}>remove_circle_outline</Button>
+                <Toogle value={success} event={toggleSuccess} disabled={disabledToogle}></Toogle>
+                <Button event={plusSubCount} icon={true}>add_circle_outline</Button>
+                <Button event={minusSubCount} icon={true}>remove_circle_outline</Button>
             </>)
             case "C": return (<Button>success</Button>)
             default: return
@@ -47,7 +60,16 @@ const Point = ({ title, type, state ,score =10,subScore=5}) => {
                         {setUI(type)}
                     </div>
                     <div className="point__score">
-                        {(success ? score : 0) + subScore*subCount}
+                        {point}
+                    </div>
+                    <div className="point__info">
+                        <span className="point__info_main">{score}</span>
+                        {
+                            (type === 'B') ? (<>
+                                <span>/</span>
+                                <span className="point__info_sub">{subScore}</span>
+                            </>) : <></>
+                        }
                     </div>
                 </div>
             </Card>

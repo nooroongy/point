@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import Mobile from '../components/Layout/Mobile';
 import Point from '../components/point';
 import Checker from '../components/UI/Checker';
 import Toogle from '../components/UI/Toogle';
+import '../css/home.css'
 
 const Home = () => {
     var testData = [
@@ -68,16 +70,24 @@ const Home = () => {
         },
     ]
 
+    const [total,setTotal] = useState(0);
+
+    const onPointChange = (changedPoint) => {
+        setTotal(total + changedPoint)
+    }
+
     return (
         <div className='home__wrap'>
-            <Toogle value={false}></Toogle>
+            <div className='home__total_wrap'>{total}</div>
             <Mobile>
                 {testData.map((v, i) => {
                     return <Point
                         key={i}
+                        id={i}
                         title={v.title}
                         state={v.state}
                         type={v.type}
+                        onChange = {onPointChange}
                     />
                 })}
             </Mobile>
