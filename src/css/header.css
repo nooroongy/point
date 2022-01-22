@@ -1,8 +1,10 @@
 .header-wrap{
     width: 100vw;
-    height: 58px;
+    height: 80px;
     position: fixed;
     z-index: 5;
+    background-color: black;
+    color: white;
 }
 
 .header-nickname{
@@ -16,7 +18,7 @@
     font-family: 'jua';
 }
 
-.header-signout{
+/* .header-signout{
     position: absolute;
     right: 10px;
     z-index: 2;
@@ -25,4 +27,4 @@
     border: none;
     font-size: 1.3em;
     color: white;
-}
+} */

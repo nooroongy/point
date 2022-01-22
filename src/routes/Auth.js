@@ -1,0 +1,13 @@
+import { FB_AUTH } from '../components/_firebase'
+
+const Auth = () => {
+    function onClickSignInPopBtn() {
+        FB_AUTH.signInWithGoogle(false);
+    }
+
+    return (<div>
+        {/* <button onClick={onClickSignInBtn}>login</button> */}
+        <button onClick={onClickSignInPopBtn}>sign In With Google</button>
+    </div>)
+}
+export default (Auth);

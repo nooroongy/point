@@ -4,7 +4,7 @@ import '../css/point.css'
 import Toogle from "./UI/Toogle";
 import { useEffect, useState } from "react";
 
-const Point = ({ title, type, score = 10, subScore = 5, onChange }) => {
+const Point = ({ title, type, score = 10, subScore = 5, onChange}) => {
     const [success, isSucces] = useState(false);
     const [subCount, setSubCount] = useState(0);
     const [point, setPoint] = useState(0);
@@ -41,8 +41,8 @@ const Point = ({ title, type, score = 10, subScore = 5, onChange }) => {
             case "A": return (<Toogle value={success} event={toggleSuccess}></Toogle>)
             case "B": return (<>
                 <Toogle value={success} event={toggleSuccess} disabled={disabledToogle}></Toogle>
-                <Button event={plusSubCount} icon={true}>add_circle_outline</Button>
                 <Button event={minusSubCount} icon={true}>remove_circle_outline</Button>
+                <Button event={plusSubCount} icon={true}>add_circle_outline</Button>
             </>)
             case "C": return (<Button>success</Button>)
             default: return
