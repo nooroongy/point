@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Mobile from '../components/Layout/Mobile';
 import Point from '../components/point';
@@ -8,12 +8,16 @@ import Toogle from '../components/UI/Toogle';
 import { FB_DB } from '../components/_firebase';
 import '../css/home.css'
 
-const Home = ({ todoList, addTodo, user, setPoint, point, resetTodo, connectTodoDB }) => {
+const Home = ({ todoList, addTodo, user, setPoint, point, resetTodo, connectTodoDB ,defaultPoint}) => {
     const [total, setTotal] = useState(0);
 
     const onPointChange = (changedPoint) => {
-        setTotal(total + changedPoint)
+        setTotal(total*1 + changedPoint)
     }
+
+    useEffect(()=>{
+        setTotal(defaultPoint)
+    },[defaultPoint])
 
     const test = () => {
         const testData = {
@@ -23,6 +27,7 @@ const Home = ({ todoList, addTodo, user, setPoint, point, resetTodo, connectTodo
             subScore:5,
             comboScore:30,
             failScore:0,
+            subFailScore:0,
             uid: user.uid
         }
 
@@ -72,6 +77,8 @@ const Home = ({ todoList, addTodo, user, setPoint, point, resetTodo, connectTodo
                         type={v.type}
                         score={v.score}
                         subScore={v.subScore}
+                        failScore={v.failScore}
+                        subFailScore={v.subFailScore}
                         onChange={onPointChange}
                     />
                 })}
@@ -82,7 +89,11 @@ const Home = ({ todoList, addTodo, user, setPoint, point, resetTodo, connectTodo
 
 function mapStateToProps(state, props) {
     const { user, point, todoList } = state;
-    return { user, point, todoList }
+    let defaultPoint = 0;
+    todoList.forEach(v=>{
+        defaultPoint += v.failScore*1
+    })
+    return { user, point, todoList, defaultPoint }
 }
 
 function mapDispatchProps(dispatch) {

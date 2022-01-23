@@ -4,17 +4,18 @@ import '../css/point.css'
 import Toogle from "./UI/Toogle";
 import { useEffect, useState } from "react";
 
-const Point = ({ title, type, score = 10, subScore = 5, onChange}) => {
+
+const Point = ({ title, type, score = 10, subScore = 5, onChange,failScore =0,subFailScore}) => {
     const [success, isSucces] = useState(false);
     const [subCount, setSubCount] = useState(0);
-    const [point, setPoint] = useState(0);
+    const [point, setPoint] = useState(failScore);
     const [disabledToogle, setDisabledToogle] = useState(false)
 
     useEffect(() => {
         if (typeof onChange === 'function') onChange(-point)
         if (success && subCount > 0) setDisabledToogle(true);
         else setDisabledToogle(false)
-        setPoint((success ? score*1 : 0) + subScore * subCount)
+        setPoint((success ? score*1 : failScore*1) + subScore * subCount)
     }, [subCount, success])
 
     useEffect(() => {
