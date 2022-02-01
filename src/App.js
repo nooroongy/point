@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Home from "./routes/Home";
 import Test from "./routes/Test";
-import Test2 from "./routes/Test2";
 import './css/common.css'
 import { ACTION } from "./components/store";
 import { connect } from "react-redux";
@@ -10,8 +9,9 @@ import { useEffect, useState } from "react";
 import { FB_AUTH, FB_DB } from "./components/_firebase";
 import Header from "./components/Header";
 import Auth from "./routes/Auth";
+import Record from "./routes/Record";
 
-function App({ todoList, connectTodoDB, setUser,connectPoint,connectTodayPoint}) {
+function App({ todoList, connectTodoDB, setUser,connectPoint,connectHistory}) {
   const [isLogedIn, setIsLogedIn] = useState(false); // 로그인중인지
 
 
@@ -34,7 +34,7 @@ function App({ todoList, connectTodoDB, setUser,connectPoint,connectTodayPoint})
         })
         //history DB에 연결
         FB_DB.get('history').then(res => {
-          connectTodayPoint(res.filter(data => data.uid === user.uid))
+          connectHistory(res.filter(data => data.uid === user.uid))
         })
       }
       //user정보가 없을 때
@@ -51,7 +51,7 @@ function App({ todoList, connectTodoDB, setUser,connectPoint,connectTodayPoint})
         <Routes>
           <Route path='/*' element={<Home />}></Route>
           <Route path='/test' element={<Test />}></Route>
-          <Route path='/test2' element={<Test2 />}></Route>
+          <Route path='/record' element={<Record />}></Route>
         </Routes>
         :
         <Auth />}
@@ -66,7 +66,7 @@ function mapDispatchProps(dispatch) {
     setUser: (user) => dispatch(ACTION.setUser(user)),
     connectTodoDB: (user) => dispatch(ACTION.setTodo(user)),
     connectPoint: (user) => dispatch(ACTION.setPoint(user)),
-    connectTodayPoint: (user) => dispatch(ACTION.setTodayPoint(user)),
+    connectHistory: (user) => dispatch(ACTION.setHistory(user)),
   }
 }
 

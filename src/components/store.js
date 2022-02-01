@@ -18,6 +18,7 @@ const slice = createSlice({
             state.point = action.payload
         },
         setTodayPoint: (state, action) => { state.todayPoint = action.payload },
+        setHistory: (state, action) => { state.history = action.payload },
         // setTodo: (state, action) => { 
         //     let soltTmp = [...action.payload]
         //     soltTmp.sort((a,b)=>b.date -a.date)

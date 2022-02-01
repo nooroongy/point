@@ -3,53 +3,55 @@ import { connect } from 'react-redux';
 import Mobile from '../components/Layout/Mobile';
 import Point from '../components/point';
 import { ACTION } from '../components/store';
-import Checker from '../components/UI/Checker';
-import Toogle from '../components/UI/Toogle';
 import { FB_DB } from '../components/_firebase';
 import '../css/home.css'
 
-const Home = ({ todoList, addTodo, user, setPoint, point, resetTodo, connectTodoDB ,defaultPoint}) => {
+const Home = ({ todoList, addTodo, user, setPoint, point, resetTodo, connectTodoDB, defaultPoint }) => {
     const [total, setTotal] = useState(0);
 
     const onPointChange = (changedPoint) => {
-        setTotal(total*1 + changedPoint)
+        setTotal(total * 1 + changedPoint)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         setTotal(defaultPoint)
-    },[defaultPoint])
+    }, [defaultPoint])
 
     const test = () => {
-        const testData = {
-            title: '코딩공부하기',
-            type: "B",
-            score: 5,
-            subScore:5,
-            comboScore:30,
-            failScore:0,
-            subFailScore:0,
-            uid: user.uid
-        }
+        // const testData = {
+        //     title: '코딩공부하기',
+        //     type: "B",
+        //     score: 5,
+        //     subScore:5,
+        //     comboScore:30,
+        //     failScore:0,
+        //     subFailScore:0,
+        //     uid: user.uid
+        // }
 
-        FB_DB.add("todoList", testData, (res) => {
-            addTodo(testData)
-        })
-
-        // let today = new Date();   
-
-        // let year = today.getFullYear() +''; // 년도
-        // let month = today.getMonth() + 1 +'';  // 월
-        // let date = today.getDate() +'';  // 날짜
-        // FB_DB.add("history",{
-        //     id:user.uid,
-        //     data:year + month + date,
-        //     point:0
-        // } ,(res)=>{
-        //     // addTodo(testData)
+        // FB_DB.add("todoList", testData, (res) => {
+        //     addTodo(testData)
         // })
+
+        let today = new Date();
+
+        let year = today.getFullYear() + ''; // 년도
+        let month = today.getMonth() + 1 + '';  // 월
+        let date = today.getDate() + '';  // 날짜
+
+        month = (month < 10 ? '0' : '') + month;
+        date = (date < 10 ? '0' : '') + date;
+
+        FB_DB.add("history", {
+            uid: user.uid,
+            data: year + month + date,
+            point: total
+        }, (res) => {
+            modiftPoint()
+        })
     }
 
-    function pointTest() {
+    function modiftPoint() {
         FB_DB.update("point", point.id, {
             point: point.point + total,
             uid: user.uid
@@ -65,9 +67,11 @@ const Home = ({ todoList, addTodo, user, setPoint, point, resetTodo, connectTodo
 
     return (
         <div className='home__wrap'>
-            <div className='home__total_wrap'>{total}</div>
-            <button onClick={test}>addTest</button>
-            <button onClick={pointTest}>pointTest</button>
+            <div className='home__total_wrap'>
+                <span>오늘의 점수 :{total}</span>
+                <button className='home__confirm_btn' onClick={test}>확정</button>
+            </div>
+
             <Mobile>
                 {todoList.map((v, i) => {
                     return <Point
@@ -90,8 +94,8 @@ const Home = ({ todoList, addTodo, user, setPoint, point, resetTodo, connectTodo
 function mapStateToProps(state, props) {
     const { user, point, todoList } = state;
     let defaultPoint = 0;
-    todoList.forEach(v=>{
-        defaultPoint += v.failScore*1
+    todoList.forEach(v => {
+        defaultPoint += v.failScore * 1
     })
     return { user, point, todoList, defaultPoint }
 }

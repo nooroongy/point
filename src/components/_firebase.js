@@ -46,7 +46,7 @@ export const FB_DB = {
   },
   update:(name,id,data,callback)=>{
     updateDoc(doc(db, name, id),data).then(()=>{
-      alert('수정이 완료되었습니다.')
+      // alert('수정이 완료되었습니다.')
       if(typeof callback === 'function')
       callback();
     });

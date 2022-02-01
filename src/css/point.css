@@ -1,6 +1,6 @@
 .point__wrap{
     background-color: #e35757;
-    margin: 4px;
+    margin: 1px;
 }
 
 .point__wrap.point__success{
@@ -11,7 +11,7 @@
     height: 85px;
     width: 100%;
     display: grid;
-    grid-template-columns: 2.7fr 1.1fr 1fr 2.5fr;
+    grid-template-columns: 2.7fr 1.1fr 1fr 2.7fr;
     align-items: center;
 }
 
@@ -37,7 +37,7 @@
     grid-row: 1/2;
     grid-column: 4/5;
     color: white;
-    font-size: 2.5em;
+    font-size: 2.3em;
     text-align: right;
     height: 45px;
     display: flex;

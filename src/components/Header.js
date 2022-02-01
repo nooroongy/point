@@ -7,9 +7,9 @@ const Header = ({user,isLogedIn,point}) => {
         FB_AUTH.signOut()
     }
 
-    return (<span className='header-wrap main-color'>
-        {point.point}
-        <button onClick={onClickSignBtn}>test</button>
+    return (<span className='header-wrap'>
+        point:{point.point}
+        <button onClick={onClickSignBtn} hidden></button>
         {/* {!isLogedIn ? <></> : <button onClick={onClickSignBtn} className='header-signout font-icon'>logout</button>}
         <span className='header-nickname'>{user ? user.displayName:''} 의 수면생활</span> */}
     </span>)

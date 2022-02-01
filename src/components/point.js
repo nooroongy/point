@@ -45,13 +45,26 @@ const Point = ({ title, type, score = 10, subScore = 5, onChange,failScore =0,su
                 <Button event={minusSubCount} icon={true}>remove_circle_outline</Button>
                 <Button event={plusSubCount} icon={true}>add_circle_outline</Button>
             </>)
-            case "C": return (<Button>success</Button>)
+            case "C": return (<Toogle value={success} event={toggleSuccess}></Toogle>)
+            case "D": return (<>
+                <Toogle value={success} event={toggleSuccess} disabled={disabledToogle}></Toogle>
+                <Button event={minusSubCount} icon={true}>remove_circle_outline</Button>
+                <Button event={plusSubCount} icon={true}>add_circle_outline</Button>
+            </>)
             default: return
         }
     }
 
+    function getClass(){
+        if(type === 'C' || type ==='D'){
+            return !success ? 'point__success' : ''
+        }else{
+            return success ? 'point__success' : ''
+        }
+    }
+
     return (
-        <div className={"point__wrap " + (success ? 'point__success' : '')}>
+        <div className={"point__wrap " + getClass()}>
             <Card>
                 <div className="point__contents_wrap">
                     <div className="point__title">

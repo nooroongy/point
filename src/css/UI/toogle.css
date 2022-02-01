@@ -21,7 +21,8 @@
     border-radius: 10px;
 }
 .toogle__on.toogle__wrap{
-    background-color: #4d8ec1;
+    /* background-color: #4d8ec1; */
+    background-color: #00000000;
 }
 
 .toogle__on .toogle__ball{

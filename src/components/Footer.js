@@ -3,7 +3,7 @@ import '../css/footer.css'
 
 function Footer(){
     return <div className='footer-wrap'>
-        <Link to='Test2'>
+        <Link to='record'>
             <button className='footer-btn sub-color font-color font-icon'>account_circle</button>
         </Link>
         <Link to=''>
