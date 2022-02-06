@@ -10,29 +10,15 @@ const Home = ({ todoList, addTodo, user, setPoint, point, resetTodo, connectTodo
     const [total, setTotal] = useState(0);
 
     const onPointChange = (changedPoint) => {
-        setTotal(total * 1 + changedPoint)
+        setTotal(total * 1 + changedPoint*1)
     }
 
     useEffect(() => {
+        if(!isNaN(defaultPoint))
         setTotal(defaultPoint)
     }, [defaultPoint])
 
-    const test = () => {
-        // const testData = {
-        //     title: '코딩공부하기',
-        //     type: "B",
-        //     score: 5,
-        //     subScore:5,
-        //     comboScore:30,
-        //     failScore:0,
-        //     subFailScore:0,
-        //     uid: user.uid
-        // }
-
-        // FB_DB.add("todoList", testData, (res) => {
-        //     addTodo(testData)
-        // })
-
+    const confirm = () => {
         let today = new Date();
 
         let year = today.getFullYear() + ''; // 년도
@@ -48,6 +34,22 @@ const Home = ({ todoList, addTodo, user, setPoint, point, resetTodo, connectTodo
             point: total
         }, (res) => {
             modiftPoint()
+        })
+    }
+
+    function test(){
+        const testData = {
+            title: '단어외우기',
+            type: "A",
+            score: 20,
+            subScore:0,
+            // uid: 'CEMwHcVAX8XjVn51MvRpbaNlhNk1'
+            uid: 'vJoih2tgOmRqlB9705t6mn8cP2X2'
+        }
+ 
+
+        FB_DB.add("todoList", testData, (res) => {
+            addTodo(testData)
         })
     }
 
@@ -69,7 +71,8 @@ const Home = ({ todoList, addTodo, user, setPoint, point, resetTodo, connectTodo
         <div className='home__wrap'>
             <div className='home__total_wrap'>
                 <span>오늘의 점수 :{total}</span>
-                <button className='home__confirm_btn' onClick={test}>확정</button>
+                <button className='home__confirm_btn' onClick={confirm}>확정</button>
+                {/* <button className='home__confirm_btn' onClick={test}>테스트</button> */}
             </div>
 
             <Mobile>

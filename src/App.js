@@ -31,6 +31,12 @@ function App({ todoList, connectTodoDB, setUser,connectPoint,connectHistory}) {
         //point DB에 연결
         FB_DB.get('point').then(res => {
           connectPoint(res.filter(data => data.uid === user.uid)[0])
+          if(res.filter(data => data.uid === user.uid).length===0){
+            FB_DB.add("point", {
+              uid: user.uid,
+              point: 0
+          })
+          }
         })
         //history DB에 연결
         FB_DB.get('history').then(res => {

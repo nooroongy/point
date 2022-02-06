@@ -22,6 +22,16 @@
     font-family: 'jua';
 }
 
+.header__signOut{
+    float: left;
+    background: none;
+    border: none;
+    color: #ffffffe3;
+    font-family: 'Supermercado One';
+    font-size: 0.7em;
+    letter-spacing: -2px;
+}
+
 /* .header-signout{
     position: absolute;
     right: 10px;

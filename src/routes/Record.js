@@ -34,7 +34,7 @@ const Record = ({user,history}) =>{
     //     {label:'2020/01/05',value:3},
     // ]
 
-    const max = [...test].sort((a,b)=>b.value-a.value)[0].value
+    const max = test.length>0 ?[...test].sort((a,b)=>b.value-a.value)[0].value : 0;
 
     return (
         <div className="record_wrap">
